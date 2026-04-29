@@ -1,0 +1,386 @@
+body {
+    background: wheat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 16px;
+    font-family: "Sour Gummy", sans-serif;
+    gap: 32px;
+}
+
+#title span {
+    display: inline-block;
+    animation: wave 15s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0% { transform: translateY(0); }
+    2% { transform: translateY(-6px); }
+    4% { transform: translateY(0); }
+    100% { transform: translateY(0); }
+}
+
+#title span:nth-child(1) { animation-delay: 0s; }
+#title span:nth-child(2) { animation-delay: 0.1s; }
+#title span:nth-child(3) { animation-delay: 0.2s; }
+#title span:nth-child(4) { animation-delay: 0.3s; }
+#title span:nth-child(5) { animation-delay: 0.4s; }
+#title span:nth-child(6) { animation-delay: 0.5s; }
+#title span:nth-child(7) { animation-delay: 0.6s; }
+#title span:nth-child(8) { animation-delay: 0.7s; }
+#title span:nth-child(9) { animation-delay: 0.8s; }
+#title span:nth-child(10) { animation-delay: 0.9s; }
+#title span:nth-child(11) { animation-delay: 1s; }
+#title span:nth-child(12) { animation-delay: 1.1s; }
+#title span:nth-child(13) { animation-delay: 1.2s; }
+#title span:nth-child(14) { animation-delay: 1.3s; }
+
+.top-buttons {
+    z-index: 5;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    gap: 8px;
+}
+
+#star-bar {
+    display: flex;
+    position: fixed;
+    font-size: 2rem;
+    z-index: 5;
+}
+
+#star-bar span + span {
+    margin-left: -20px; /* adjust to taste */
+}
+
+#star-bar span {
+    display: inline-block;
+}
+
+h1 {
+    font-family: "Chewy", cursive;
+    font-size: 3rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #2B1B14;
+}
+
+h2 {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: #2B1B14;
+}
+
+p {
+    margin: 0;
+    color: #2B1B14;
+}
+
+.flag-box {
+    position: relative;
+    border: 2px solid #2B1B14;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.input-box {
+    display: flex;
+    gap: 16px;
+}
+
+#flagcat {
+    width: 40vh;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    display: block;
+}
+
+#cat1, #cat2, #cat3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+#flag1, #flag2, #flag3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    object-fit: fill;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+@keyframes revealLeft { to { transform: translateX(-125%); } }
+@keyframes revealRight { to { transform: translateX(125%); } }
+
+.flag-box.game-end #flag1, .flag-box.game-end #cat1 { animation: revealLeft 1s cubic-bezier(0.1, 1, 0.5, 1) forwards; }
+.flag-box.game-end #flag3, .flag-box.game-end #cat3 { animation: revealRight 1s cubic-bezier(0.1, 1, 0.5, 1) forwards; }
+.flag-box.game-end #cat1, .flag-box.game-end #cat2, .flag-box.game-end #cat3 {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    border: 2px solid #2B1B14;
+}
+.flag-box.game-end {
+    border: 0px;
+}
+
+
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-5px, 1px); }
+    20% { transform: translate(4px, -3px); }
+    30% { transform: translate(-7px, 1px); }
+    40% { transform: translate(3px, -2px); }
+    50% { transform: translate(-4px, 4px); }
+    60% { transform: translate(5px, -1px); }
+    70% { transform: translate(-2px, 4px); }
+    80% { transform: translate(5px, -2px); }
+    90% { transform: translate(-3px, 3px); }
+    100% { transform: translate(0, 0); }
+}
+
+.shake {
+    animation: shake 0.4s ease;
+}
+
+@keyframes bounce {
+    0% { transform: translate(0, 0); }
+    30% { transform: translate(0, -8px) rotate(-1deg);}
+    100% { transform: translate(0, 0) rotate(0); }
+}
+
+.bounce {
+    animation: bounce 0.4s ease;
+}
+
+
+#guess-history {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 300px;
+    padding-bottom: 32px;
+}
+
+.guess-correct {
+    padding: 0 12px;
+    border: 2px solid olivedrab;
+    font-size: 1rem;
+    height: 100%;
+}
+
+.guess-wrong {
+    padding: 0 12px;
+    border: 2px solid darkslategrey;
+    background-color: slategrey;
+    font-size: 1rem;
+    height: 100%;
+}
+
+button {
+    border: none;
+    outline: none;
+
+    background-color: olive;
+    color: white;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+}
+button:hover {
+    background: goldenrod;
+    transform: scale(1.05);
+}
+button:active {
+    transform: scale(0.95);
+}
+
+.give-up-button {
+    border: none;
+    outline: none;
+
+    background-color: crimson;
+    color: white;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+}
+.give-up-button:hover {
+    background: red;
+    transform: scale(1.05);
+}
+.give-up-button:active {
+    transform: scale(0.95);
+}
+
+input {
+    border: none;
+    outline: none;
+
+    background: white;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.2s;
+}
+input:focus {
+    box-shadow: 0 2px 14px rgba(0,0,0,0.25);
+}
+
+@keyframes slam {
+    from { transform: scale(1.25); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes rainbow-slide {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+@keyframes rainbow-fade {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.guess-correct {
+    background-color: chartreuse;
+    position: relative;
+    overflow: hidden;
+}
+
+.guess-correct span, .guess-wrong span {
+    color: #2B1B14;
+    position: relative;
+    z-index: 1;
+}
+
+.guess-correct span {
+    font-weight: bold;
+}
+
+.guess-correct::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(135deg, red, orange, yellow, green, cyan, blue, violet, red, orange, yellow, green, cyan, blue, violet);
+    background-size: 600% 600%;
+    animation: rainbow-slide 1.2s linear forwards, rainbow-fade 0.5s ease-out 0.6s forwards;
+    pointer-events: none;
+}
+
+.guess-correct, .guess-wrong {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slam 0.2s ease-out;
+}
+
+.modal {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.2s;
+    visibility: visible;
+}
+
+.modal.close {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+    background:wheat;
+    padding:24px;
+    gap: 16px;
+    max-width:400px;
+    box-shadow: 0 2px 32px rgba(0,0,0,0.5);
+
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+#status {
+    background: white;
+    border: 2px solid #2B1B14;
+    border-radius: 12px;
+    padding: 12px 20px;
+}
+
+#speech-tail {
+    position: absolute;
+    top: -22px;
+    left: 32px;
+    width: 32px;
+    height: 32px;
+}
+
+@keyframes flash-incorrect {
+    0% { color: darkred; }
+    100% { color: #2B1B14; }
+}
+
+@keyframes flash-correct {
+    0% { color: olivedrab; }
+    100% { color: #2B1B14; }
+}
+
+.flash-incorrect {
+    animation: flash-incorrect 0.75s ease-out;
+}
+
+.flash-correct {
+    animation: flash-correct 1.5s ease-out;
+}
+
+
+
+#flag-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.flag-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px;
+    background: #2B1B14;
+    border-radius: 8px;
+    justify-content: space-between;
+}
+
+.flag-row img {
+    height: 40px;
+    object-fit: cover;
+    border: 2px solid black;
+}

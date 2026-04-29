@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <title>Flagcat Flags</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class="top-buttons">
+            <a href="./"><button>Back to Flagcat</button></a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; position: fixed; top: 16px; left: 16px; gap: 16px; width: 340px;">
+            <div id="feedback-box" style="text-align: left; background-color:goldenrod; padding: 24px; flex-wrap: wrap; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; justify-content:space-between;">
+                    <h1>Feedback!</h1>
+                    <style>
+                        .this-button-below-me {
+                            color: #2B1B14;
+                            font-family: "Chewy", cursive;
+                            font-size: 3rem;
+                        }
+                        .this-button-below-me:hover { color: wheat; }
+                    </style>
+                    <button onclick="document.getElementById('feedback-box').style.display='none'" class="this-button-below-me" style="background-color: transparent;font-size: 2rem;">X</button>
+                </div>
+                <p>As of right now, the difficulty ratings for the flags are very rough, and were mostly picked arbitrarily with the input of only a couple people. And I personally am not the biggest flag nerd so I am very uncertain for a lot of my choices.</p>
+                <p>If you have any opinions on the way things are balanced as of right now, or think something might warrant a change, please consider sharing!</p>
+                <p>You can contact me @lamama on discord, but I should have a google forms embed here soon for ease of access.</p>
+            </div>
+
+            <div id="patchnotes-box" style="text-align: left; background-color:goldenrod; padding: 24px; flex-wrap: wrap; max-width: 300px; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; justify-content:space-between;">
+                    <h1>Patchnotes!</h1>
+                    <style>
+                        .this-button-below-me {
+                            color: #2B1B14;
+                            font-family: "Chewy", cursive;
+                            font-size: 3rem;
+                        }
+                        .this-button-below-me:hover { color: wheat; }
+                    </style>
+                    <button onclick="document.getElementById('patchnotes-box').style.display='none'" class="this-button-below-me" style="background-color: transparent;font-size: 2rem;">X</button>
+                </div>
+                <p>I have noting</p>
+            </div>
+        </div>
+        
+        <h1>Flags for the flag cat</h1>
+
+        <div style="display: flex; gap: 8px;" id="filters">
+            <button onclick="renderGrid('alpha')">A-Z</button>
+            <button onclick="renderGrid('desc')">★ Descending</button>
+            <button onclick="renderGrid('asc')">★ Ascending</button>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+            <div id="flag-grid"></div>
+        </div>
+
+        <!-- connecting to and running the scripts after since script updates the elements -->
+        <script src="flags.js"></script>
+        <script src="game.js"></script> 
+    </body>
+
+    <script>
+        const grid = document.getElementById("flag-grid");
+
+        flags.forEach(flag => {
+            const row = document.createElement("div");
+            row.classList.add("flag-row");
+
+            const img = document.createElement("img");
+            img.src = getFlag(flag.code);
+            img.alt = flag.name;
+
+            const name = document.createElement("span");
+            name.textContent = flag.name;
+
+            const difficulty = document.createElement("span");
+            difficulty.textContent = "★".repeat(flag.difficulty) + "☆".repeat(5 - flag.difficulty);
+
+            const colors = ["", "lightblue", "chartreuse", "goldenrod", "red", "violet"];
+            difficulty.style.color = colors[flag.difficulty];
+            name.style.color = colors[flag.difficulty];
+
+            name.style.fontSize = "1.5rem";
+
+            row.appendChild(img);
+            row.appendChild(name);
+            row.appendChild(difficulty);
+            grid.appendChild(row);
+        });
+
+        function renderGrid(filter) {
+            const grid = document.getElementById("flag-grid");
+            grid.innerHTML = "";
+
+            let list = [...flags];
+
+            if (filter === "alpha") {
+                list.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (filter === "desc") {
+                list.sort((a, b) => b.difficulty - a.difficulty);
+            } else if (filter === "asc") {
+                list.sort((a, b) => a.difficulty - b.difficulty);
+            } else if (filter !== "all") {
+                list = list.filter(f => f.difficulty === filter);
+            }
+            list.forEach(flag => {
+                const row = document.createElement("div");
+                row.classList.add("flag-row");
+
+                const img = document.createElement("img");
+                img.src = getFlag(flag.code);
+                img.alt = flag.name;
+
+                const name = document.createElement("span");
+                name.textContent = flag.name;
+
+                const difficulty = document.createElement("span");
+                difficulty.textContent = "★".repeat(flag.difficulty) + "☆".repeat(5 - flag.difficulty);
+                const colors = diffColors;
+                difficulty.style.color = colors[flag.difficulty];
+                difficulty.style.fontSize = "1.5rem";
+
+                name.style.color = colors[flag.difficulty];
+                name.style.fontSize = "1.2rem";
+
+                row.appendChild(img);
+                row.appendChild(name);
+                row.appendChild(difficulty);
+                grid.appendChild(row);
+            });
+        }
+
+        renderGrid("all");
+    </script>
+
+</html>
