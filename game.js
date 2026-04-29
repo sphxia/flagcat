@@ -399,7 +399,7 @@ function writeSave() {
         guessHistory,
         finished: gameEnded,
         correctFlagNames,
-        stars: starCount
+        starsEarned: starCount
     };
     localStorage.setItem(dateKey, JSON.stringify(saveData));
 }
@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function() {
         renderGuess(guess, isCorrect);
     });
 
-    starCount = save.stars;
+    starCount = save.starsEarned;
 
     for (let i = 0; i < starCount; i ++) {
         const star = document.createElement("span");
