@@ -321,7 +321,7 @@ function copyResults() {
     }
 
     let resultsString = "";
-    resultsString = messageString + squaresString + "\nTake his " + nth + " challenge here! https://sphxia.github.io/flagcat";
+    resultsString = messageString + squaresString + "\nTake his " + nth + " challenge here! https://flagcat.cat";
     navigator.clipboard.writeText(resultsString);
 }
 
