@@ -195,7 +195,7 @@ function submitGuess() {
 
     writeSave();
 
-    if (correctGuesses === 3) {
+    if (correctGuesses === 4) {
         endGame();
     }
 }
