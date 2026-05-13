@@ -321,7 +321,7 @@ function copyResults() {
     }
 
     let messageString = "Hardcat #" + dayNum + "\n";
-    if (correctGuesses === 3) {
+    if (correctGuesses === 4) {
         messageString += "I guessed his three hard flags:"
     } else {
         messageString += "His difficult flags got the better of me:"
