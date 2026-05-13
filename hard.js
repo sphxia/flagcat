@@ -1,4 +1,4 @@
-const startDate = new Date(2026, 3, 29);
+const startDate = new Date(2026, 4, 13);
 const thisDay = new Date();
 thisDay.setHours(0,0,0,0);
 
@@ -12,11 +12,11 @@ dayChars.split("").forEach((char, i) => {
 });
 
 const weights = {
-    1: 4,
-    2: 5,
+    1: 2,
+    2: 3,
     3: 5,
-    4: 3,
-    5: 2
+    4: 5,
+    5: 4
 }
 
 const weightedPool = [];
@@ -52,20 +52,21 @@ function getDailyFlags() {
         if (!dailyFlags.includes(pool[i])) {
             dailyFlags.push(pool[i]);
         }
-        if (dailyFlags.length === 3) break;
+        if (dailyFlags.length === 4) break;
     }
 
     return dailyFlags;
 }
 
-const [flag1, flag2, flag3] = getDailyFlags();
-const allFlags = [flag1, flag2, flag3];
+const [flag1, flag2, flag3, flag4] = getDailyFlags();
+const allFlags = [flag1, flag2, flag3, flag4];
 
 document.getElementById("flag1").src = `https://flagcdn.com/w320/${flag1.code}.png`;
 document.getElementById("flag2").src = `https://flagcdn.com/w320/${flag2.code}.png`;
-document.getElementById("flag3").src = `https://flagcdn.com/w320/${flag3.code}.png`;    
+document.getElementById("flag3").src = `https://flagcdn.com/w320/${flag3.code}.png`;   
+document.getElementById("flag4").src = `https://flagcdn.com/w320/${flag4.code}.png`;
     
-const correctFlagNames = [flag1.name.toLowerCase(), flag2.name.toLowerCase(), flag3.name.toLowerCase()];
+const correctFlagNames = [flag1.name.toLowerCase(), flag2.name.toLowerCase(), flag3.name.toLowerCase(), flag4.name.toLowerCase()];
 
 for (let i = 0; i < allFlags.length; i++) {
     const div = document.getElementById("nametag" + (i + 1));
@@ -244,7 +245,7 @@ function endGame() {
         const status = document.getElementById("status");
         status.textContent = "";
 
-        const first = document.createTextNode("Holy moly you did it. You guessed my three flags! Click ");
+        const first = document.createTextNode("Holy moly you did it. You guessed my hardest flags! Click ");
 
         const button = document.createElement("button");
         button.textContent = "Here";
@@ -267,7 +268,7 @@ function endGame() {
         const status = document.getElementById("status");
         status.textContent = "";
 
-        const first = document.createTextNode("Hey you lost but thats okay. Click ");
+        const first = document.createTextNode("Hey you lost but thats expected. Click ");
 
         const button = document.createElement("button");
         button.textContent = "Here";
@@ -319,15 +320,15 @@ function copyResults() {
         }
     }
 
-    let messageString = "Flagcat #" + dayNum + "\n";
+    let messageString = "Hardcat #" + dayNum + "\n";
     if (correctGuesses === 3) {
-        messageString += "I guessed his three daily flags:"
+        messageString += "I guessed his three hard flags:"
     } else {
-        messageString += "His daily flags got the better of me:"
+        messageString += "His difficult flags got the better of me:"
     }
 
     let resultsString = "";
-    resultsString = messageString + squaresString + "\nTake his " + nth + " challenge here! https://flagcat.cat";
+    resultsString = messageString + squaresString + "\nTake his " + nth + " challenge here! https://flagcat.cat/hard";
     navigator.clipboard.writeText(resultsString);
 }
 
@@ -397,7 +398,7 @@ document.getElementById("give-up-button").addEventListener("click", () => {
 // SAVING LOADING STUFF /////////////////////////////////////////////
 
 const today = new Date();
-const dateKey = `flagcat-${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+const dateKey = `flagcat-hard-${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
 
 const defaultSave = {
     guessHistory: [],

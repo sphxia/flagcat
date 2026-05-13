@@ -1,22 +1,13 @@
-const startDate = new Date(2026, 3, 29);
+const startDate = new Date(2026, 4, 12);
 const thisDay = new Date();
 thisDay.setHours(0,0,0,0);
 
-const dayNum = Math.floor((thisDay - startDate) / 86400000) + 1;
-
-const dayChars = "\u00A0#" + dayNum;
-dayChars.split("").forEach((char, i) => {
-    const span = document.createElement("span");
-    span.textContent = char;
-    document.getElementById("title").appendChild(span);
-});
-
 const weights = {
-    1: 4,
-    2: 5,
-    3: 5,
-    4: 3,
-    5: 2
+    1: 1,
+    2: 1,
+    3: 1,
+    4: 1,
+    5: 1
 }
 
 const weightedPool = [];
@@ -59,18 +50,12 @@ function getDailyFlags() {
 }
 
 const [flag1, flag2, flag3] = getDailyFlags();
-const allFlags = [flag1, flag2, flag3];
 
 document.getElementById("flag1").src = `https://flagcdn.com/w320/${flag1.code}.png`;
 document.getElementById("flag2").src = `https://flagcdn.com/w320/${flag2.code}.png`;
 document.getElementById("flag3").src = `https://flagcdn.com/w320/${flag3.code}.png`;    
     
 const correctFlagNames = [flag1.name.toLowerCase(), flag2.name.toLowerCase(), flag3.name.toLowerCase()];
-
-for (let i = 0; i < allFlags.length; i++) {
-    const div = document.getElementById("nametag" + (i + 1));
-    div.innerHTML = `<img src="nametag.png"><span>${allFlags[i].name}</span>`;
-}
 
 const guessHistory = [];
 let gameEnded = false;
@@ -244,7 +229,7 @@ function endGame() {
         const status = document.getElementById("status");
         status.textContent = "";
 
-        const first = document.createTextNode("Holy moly you did it. You guessed my three flags! Click ");
+        const first = document.createTextNode("Holy moly you did it. You guessed my hardest flags! Click ");
 
         const button = document.createElement("button");
         button.textContent = "Here";
@@ -267,7 +252,7 @@ function endGame() {
         const status = document.getElementById("status");
         status.textContent = "";
 
-        const first = document.createTextNode("Hey you lost but thats okay. Click ");
+        const first = document.createTextNode("Hey you lost but thats expected. Click ");
 
         const button = document.createElement("button");
         button.textContent = "Here";
@@ -303,6 +288,11 @@ function endGame() {
     // ANIMATION /////////////////////////
     document.getElementById("flag-box").classList.add("game-end");
 
+    [[flag1, "nametag1"], [flag2, "nametag2"], [flag3, "nametag3"]].forEach(([flag, id]) => {
+        const div = document.getElementById(id);
+        div.innerHTML = `<img src="nametag.png"><span>${flag.name}</span>`;
+    });
+
     gameEnded = true;
     writeSave();
 }
@@ -319,15 +309,15 @@ function copyResults() {
         }
     }
 
-    let messageString = "Flagcat #" + dayNum + "\n";
+    let messageString = "Hardcat #" + dayNum + "\n";
     if (correctGuesses === 3) {
-        messageString += "I guessed his three daily flags:"
+        messageString += "I guessed his three hard flags:"
     } else {
-        messageString += "His daily flags got the better of me:"
+        messageString += "His difficult flags got the better of me:"
     }
 
     let resultsString = "";
-    resultsString = messageString + squaresString + "\nTake his " + nth + " challenge here! https://flagcat.cat";
+    resultsString = messageString + squaresString + "\nTake his " + nth + " challenge here! https://flagcat.cat/hard";
     navigator.clipboard.writeText(resultsString);
 }
 
@@ -396,8 +386,10 @@ document.getElementById("give-up-button").addEventListener("click", () => {
 
 // SAVING LOADING STUFF /////////////////////////////////////////////
 
+// NEED TO REMOVE MOST OF THIS I DONT BE SAVING OR LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 const today = new Date();
-const dateKey = `flagcat-${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+const dateKey = `flagcat-endless-${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
 
 const defaultSave = {
     guessHistory: [],

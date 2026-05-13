@@ -110,7 +110,7 @@ p {
     display: block;
 }
 
-#cat1, #cat2, #cat3 {
+#cat1, #cat2, #cat3, #cat4 {
     position: absolute;
     top: 0;
     left: 0;
@@ -122,7 +122,7 @@ p {
     pointer-events: none;
 }
 
-#flag1, #flag2, #flag3 {
+#flag1, #flag2, #flag3, #flag4 {
     position: absolute;
     top: 0;
     left: 0;
@@ -137,6 +137,7 @@ p {
 
 @keyframes revealLeft { to { transform: translateX(-125%); } }
 @keyframes revealRight { to { transform: translateX(125%); } }
+@keyframes revealRighter { to { transform: translateX(250%); } }
 
 .flag-box.game-end #cat1, .flag-box.game-end #cat2, .flag-box.game-end #cat3 {
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -182,6 +183,7 @@ p {
 .flag-box.game-end .nametag { opacity: 1; }
 .flag-box.game-end #flagwrap1 { animation: revealLeft 1s cubic-bezier(0.1, 1, 0.5, 1) forwards; }
 .flag-box.game-end #flagwrap3 { animation: revealRight 1s cubic-bezier(0.1, 1, 0.5, 1) forwards; }
+.flag-box.game-end #flagwrap4 { animation: revealRighter 1s cubic-bezier(0.1, 1, 0.5, 1) forwards; }
 
 
 @keyframes shake {

@@ -19,8 +19,8 @@
         <div style="display: flex; flex-direction: column; position: fixed; top: 16px; right: 16px; align-items: flex-end; gap: 8px;">
             <div id="top-buttons" class="top-buttons">
                 <button onclick="openHTP()">How to Play</button>
+                <a href="index.html"><button>Normal Mode</button></a>
                 <a href="hard.html"><button>Hard Mode</button></a>
-                <button>COMING</button>
                 <button onclick="onBurgerClick()">=</button>
             </div>
 
@@ -32,7 +32,7 @@
 
         <div id="star-bar"></div>
     
-        <h1 id="title"><span>F</span><span>l</span><span>a</span><span>g</span><span>c</span><span>a</span><span>t</span></h1>
+        <h1 id="title"><span>E</span><span>n</span><span>d</span><span>l</span><span>e</span><span>s</span><span>s</span></h1>
 
         <div id="how-to-play-modal" class="modal close">
             <div class="info-box">
@@ -71,6 +71,21 @@
                 <button style="align-self:flex-end;" onclick="closeAbout()">Close</button>
             </div>
         </div>
+        
+        <div id="menu-modal" class="modal close">
+            <div class="info-box">
+                <h2>Here your statistics</h2>
+                <div>
+                    <img src="../flagcat.gif" />
+                    <p id="starCountLabel">ZERO!!!</p>
+                </div>
+
+                <div>
+                    <button onclick="startEndless()">Try my infinite gauntlet of challenges</button>
+                    <button onclick="startHard()">Try my most Grueling challenge yet!</button>
+                </div>
+            </div>
+        </div>
 
         <div id="flag-box" class="flag-box">
             <!-- actual flagcat -->
@@ -99,7 +114,7 @@
         <div id="cat-talk" style="position:relative; display: flex; align-items: flex-end; gap: 16px;">
             
             <img id="speech-tail" src="tail.png" style="user-select: none; -webkit-user-drag: none; pointer-events: none;" />
-            <h2 id="status">Welcome to my game</h2>
+            <h2 id="status">Welcome to my infinite gauntlet!</h2>
             
         </div>
 
@@ -114,7 +129,7 @@
 
         <!-- connecting to and running the scripts after since script updates the elements -->
         <script src="flags.js"></script>
-        <script src="game.js"></script> 
+        <script src="endless.js"></script> 
     </body>
 
 </html>
