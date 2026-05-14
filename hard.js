@@ -46,7 +46,7 @@ function getDailyFlags() {
         [pool[i], pool[j]] = [pool[j], pool[i]];
     }
 
-    // PICKING FIRST 3 FLAGS AND MAKING SURE NONE MATCH
+    // PICKING FIRST 4 FLAGS AND MAKING SURE NONE MATCH
     const dailyFlags = [];
     for (let i = 0; i < pool.length; i++) {
         if (!dailyFlags.includes(pool[i])) {
@@ -240,7 +240,7 @@ function renderGuess(guess, isCorrect) {
 }
 
 function endGame() {
-    if (correctGuesses === 3) {
+    if (correctGuesses === 4) {
         // HANDLE WIN //////////////////////////////////////////////////////////
         const status = document.getElementById("status");
         status.textContent = "";
@@ -322,7 +322,7 @@ function copyResults() {
 
     let messageString = "Hardcat #" + dayNum + "\n";
     if (correctGuesses === 4) {
-        messageString += "I guessed his three hard flags:"
+        messageString += "I guessed his four hard flags:"
     } else {
         messageString += "His difficult flags got the better of me:"
     }
